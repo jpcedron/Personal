@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frases Románticas</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3, #fad0c4);
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    button {
+      padding: 18px 50px;
+      font-size: 22px;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(45deg, #ff4e50, #fc913a, #ff6b81);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+    }
+
+    /* efecto de brillo */
+    button::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: rgba(255,255,255,0.2);
+      transform: rotate(25deg);
+      transition: 0.5s;
+    }
+
+    button:hover::before {
+      left: 100%;
+    }
+
+    /* frase animada */
+    .frase {
+      position: absolute;
+      font-size: 30px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+      opacity: 0;
+      animation: aparecer 3s forwards;
+    }
+
+    @keyframes aparecer {
+      0% { opacity: 0; transform: scale(0.8); }
+      20% { opacity: 1; transform: scale(1); }
+      80% { opacity: 1; }
+      100% { opacity: 0; transform: scale(1.2) translateY(-20px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button id="boton">✨Para Subir Los Animos ✨</button>
+  </div>
+
+  <script>
+    const frases = [
+      "Preciosa 💖", "Hermosa 🌹", "Encantadora ✨", "Trabajadora 🌸", "Arriesgada 🌟",
+      "Maravillosa 💕", "Dulzura 🍭", "Loca 🌞", "Tierna 💎", "Linda 🌼",
+      "Eres única con esa Personalidad 💫", "Despistada ☁️", "Comelona 🌠", "Dormilona 😍", "Guapa 🔥",
+      "Con Caracter❤️", "Princesa 👑", "Gruñona 🌹", "Ternura 🐣", "Amargada ♾️"
+    ];
+
+    const boton = document.getElementById("boton");
+
+    boton.addEventListener("click", () => {
+      const frase = document.createElement("div");
+      frase.className = "frase";
+      frase.textContent = frases[Math.floor(Math.random() * frases.length)];
+
+      // Posición aleatoria dentro de la pantalla
+      const x = Math.random() * (window.innerWidth - 200);
+      const y = Math.random() * (window.innerHeight - 100);
+
+      frase.style.left = `${x}px`;
+      frase.style.top = `${y}px`;
+
+      document.body.appendChild(frase);
+
+      // Eliminar después de que termine la animación
+      setTimeout(() => {
+        frase.remove();
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
